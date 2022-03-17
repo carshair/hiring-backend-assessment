@@ -1,6 +1,6 @@
-import { Body, Get, JsonController, Post } from 'routing-controllers';
+import { Body, Get, JsonController, Post } from "routing-controllers";
 
-import { ExampleEntity } from '../../models';
+import { ExampleEntity } from "../../models";
 
 @JsonController("/example-entity")
 export class UserController {
@@ -11,6 +11,6 @@ export class UserController {
 
   @Post()
   create(@Body() body: Pick<ExampleEntity, "exampleColumn">): Promise<ExampleEntity> {
-    return new ExampleEntity(body).save();
+    return ExampleEntity.create(body).save();
   }
 }

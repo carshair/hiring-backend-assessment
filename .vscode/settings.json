@@ -1,0 +1,7 @@
+{
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnSave": false,
+  "editor.tabSize": 2,
+  "importSorter.generalConfiguration.sortOnBeforeSave": true
+}

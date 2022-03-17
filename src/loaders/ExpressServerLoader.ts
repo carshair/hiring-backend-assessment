@@ -1,10 +1,9 @@
-import { Application } from 'express';
-import { createExpressServer } from 'routing-controllers';
+import { Application } from "express";
+import { createExpressServer } from "routing-controllers";
 
-import * as Controllers from '../api/controllers';
+import * as Controllers from "../api/controllers";
 
-export function ExpressServerLoader (
-): Application {
+export function ExpressServerLoader(): Application {
   const expressApp: Application = createExpressServer({
     cors: true,
     classTransformer: true,

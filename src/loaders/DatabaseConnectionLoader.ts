@@ -1,4 +1,4 @@
-import { Connection, createConnection } from 'typeorm';
+import { Connection, createConnection } from "typeorm";
 
 export async function DatabaseConnectionLoader (
 ): Promise<Connection> {
@@ -6,4 +6,4 @@ export async function DatabaseConnectionLoader (
   console.log("[database] connected", connection.name);
 
   return connection;
-};
+}

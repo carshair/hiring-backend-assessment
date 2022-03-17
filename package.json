@@ -8,8 +8,8 @@
   "scripts": {
     "start": "node ./dist/index.js ",
     "dev": "nodemon -r dotenv/config src/index.ts",
-    "lint": "eslint --init",
     "build": "tsc",
+    "lint": "eslint src/**/*.ts",
     "migration:create": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:create",
     "migration:show": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:show",
     "migration:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate",
@@ -37,7 +37,7 @@
     "dotenv": "^16.0.0",
     "eslint": "^8.11.0",
     "nodemon": "^2.0.15",
-    "prettier": "^2.5.1",
+    "prettier": "^2.6.0",
     "ts-node": "^10.7.0",
     "tslib": "^2.3.1",
     "typescript": "^4.6.2"
