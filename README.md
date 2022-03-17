@@ -28,7 +28,7 @@ Scope Clarifications:
 #### Constraints
 
 - Your REST API must save the collected data to a database
-- Your REST API must support CRUD functionality to **one** resource
+- Your REST API must support CRUD functionality to **one** resource (e.g. CRUD endpoints for a **car** resource)
 - Along with saving the VIN itself, your API must also decode the VIN and save the decoded vehicle details
   - Note: only basic vehicle details such as year, make, model are required to be saved.
 
@@ -100,6 +100,7 @@ To bring up the environment, perform the following steps:
 2. Bring up express server in development mode
 
     ```bash
-    # Exposes express app on port 8889
+    # In a separate terminal session
     yarn dev
+    # Exposes express app on port 8889
     ```
