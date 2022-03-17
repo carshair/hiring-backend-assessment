@@ -1,0 +1,6 @@
+node_modules/
+yarn-*.log
+dist
+.yarnrc.yml
+.DS_STORE
+coverage/
