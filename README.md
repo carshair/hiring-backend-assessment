@@ -22,7 +22,7 @@ As a Backend Developer, you are given a UI sketch from the product team of a sin
 
 Scope Clarifications:
 
-- The scope of your responsibilities are limited to the isolated feature of collecting and storing the information presented on the UI sketch. Although it is implied the car is "owned" by a Host account, design and implementation of User accounts is outside the scope of your responsibilities.
+- The scope of your responsibilities are limited to the isolated feature of collecting and storing the information presented on the UI sketch. Although it is implied the car is "owned" by a Host account, design and implementation of accounts is outside the scope of your responsibilities. Assume cars are not owned by users.
 - Frontend design/implementation is not required.
 
 #### Constraints
@@ -36,7 +36,7 @@ Scope Clarifications:
 
 - [List a car UI sketch](https://xd.adobe.com/view/fed5ede8-2626-46ec-a3f9-ec0cba0df6f4-ab86/)
 
-- We recognize that the process of setting up a project from scratch is a rare occurrence in most developer's day-to-day work. The design of this assessment is not to test your ability on how to setup a project, but rather your ability to contribute to an established project.
+- Setting up a project from scratch is a rare occurrence in most developer's the day-to-day responsibilities. The design of this assessment is not to test your ability on how to setup a project, but rather your ability to contribute to an established project.
 
   Choice of language, framework, database, etc is flexible but bonus points if you are already comfortable with our current stack:
   - MySQL
@@ -61,6 +61,8 @@ Scope Clarifications:
 - Send us a link to your submission inside a git repository
   - Show us you are comfortable working with git by keeping a detailed git history
 
+- If forking this repository, delete this README and replace with your own
+
 - Provide a README with your submission summarizing:
   - Assumptions made
   - Step by step details on how to bring up the server
@@ -68,6 +70,12 @@ Scope Clarifications:
 - Please omit the company name from your repository/project name
 
 ## Template Project Setup
+
+### Overview
+
+To reiterate - **there are no restrictions on the choice of tech stack used for your submission.** The main purpose of this assessment is to assess your ability to contribute to an established project.
+
+If you do choose to implement using our stack, feel free to fork this template repository to help you get started. Feel free to add or remove dependencies as necessary.
 
 This template project is composed of the following stack:
 
@@ -88,6 +96,8 @@ This template project is composed of the following stack:
   - [General install](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
   - [homebrew](https://formulae.brew.sh/formula/yarn)
 
+### Getting Started
+
 To bring up the environment, perform the following steps:
 
 1. Bring up the MySQL database
@@ -95,6 +105,7 @@ To bring up the environment, perform the following steps:
     ```bash
     # In the project root directory
     docker compose up
+    # Exposes database on port 3306
     ```
 
 2. Bring up express server in development mode
