@@ -20,10 +20,11 @@ As a Backend Developer, you are given a UI sketch from the product team of a sin
 
 [List a car UI sketch](https://xd.adobe.com/view/fed5ede8-2626-46ec-a3f9-ec0cba0df6f4-ab86/)
 
-Scope Clarifications:
+#### Scope Clarifications:
 
 - The scope of your responsibilities are limited to the isolated feature of collecting and storing the information presented on the UI sketch. Although it is implied the car is "owned" by a Host account, design and implementation of accounts is outside the scope of your responsibilities. Assume cars are not owned by users.
 - Frontend design/implementation is not required.
+- Although the requirements can be achieved using a single database table with all the business logic written inside your controller methods, ensure your solution applies "best practices" in your database/api design as well as the project structure. Make sure your solution is "scalable" to a larger project.
 
 #### Constraints
 
