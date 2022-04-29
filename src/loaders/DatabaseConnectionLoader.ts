@@ -1,9 +1,19 @@
-import { Connection, createConnection } from "typeorm";
+import { DataSource } from "typeorm";
 
-export async function DatabaseConnectionLoader (
-): Promise<Connection> {
-  const connection: Connection = await createConnection();
-  console.log("[database] connected", connection.name);
-
-  return connection;
+export async function DatabaseConnectionLoader() {
+  const AppDataSource = new DataSource({
+    type: "mysql",
+    host: process.env.TYPEORM_HOST,
+    port: parseInt(process.env.TYPEORM_HOST_PORT),
+    username: process.env.TYPEORM_USERNAME,
+    password: process.env.TYPEORM_PASSWORD,
+    database: process.env.TYPEORM_DATABASE,
+  });
+  AppDataSource.initialize()
+    .then(() => {
+      console.log("[database] connected", process.env.TYPEORM_DATABASE);
+    })
+    .catch((err) => {
+      console.error("Error during Data Source initialization", err);
+    });
 }

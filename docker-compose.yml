@@ -17,7 +17,7 @@ services:
       MYSQL_USER: ${TYPEORM_USERNAME}
       MYSQL_PASSWORD: ${TYPEORM_PASSWORD}
     ports:
-      - ${TYPEORM_PORT}:${TYPEORM_PORT}
+      - ${TYPEORM_HOST_PORT}:${TYPEORM_CONTAINER_PORT}
 
 volumes:
   db_data:

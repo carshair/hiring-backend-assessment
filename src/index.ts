@@ -3,7 +3,7 @@ import "reflect-metadata";
 import * as Loaders from "./loaders";
 
 async function init(): Promise<void> {
-  await Loaders.DatabaseConnectionLoader();
+  Loaders.DatabaseConnectionLoader();
   Loaders.ExpressServerLoader();
 
   console.log(

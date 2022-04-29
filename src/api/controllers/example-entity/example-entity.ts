@@ -10,7 +10,7 @@ export class UserController {
   }
 
   @Post()
-  create(@Body() body: Pick<ExampleEntity, "exampleColumn">): Promise<ExampleEntity> {
+  create(@Body() body: ExampleEntity): Promise<ExampleEntity> {
     return ExampleEntity.create(body).save();
   }
 }

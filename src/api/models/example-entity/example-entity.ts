@@ -1,22 +1,21 @@
 import {
-    BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn,
-    UpdateDateColumn
+  BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn
 } from "typeorm";
 
 @Entity("TableNameForExampleEntity")
 export class ExampleEntity extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
-  id: string;
+    id: string;
 
   @Column()
-  exampleColumn: string;
+    exampleColumn: string;
 
   @CreateDateColumn()
-  createdDate: Date;
+    createdDate: Date;
 
   @UpdateDateColumn()
-  updatedDate: Date;
+    updatedDate: Date;
 
   @DeleteDateColumn()
-  deletedDate: Date;
+    deletedDate: Date;
 }
