@@ -1,4 +1,4 @@
-import { VehicleIdentificationCodeEntity } from "../../../models";
+import { VehicleIdentificationCode } from "../../../models";
 import { DecodedVIN } from "./type";
 
 
@@ -11,9 +11,9 @@ export class VehicleIdentificationCodeController {
   }
 
   create(
-    vehicleIdentificationCodeInstance: VehicleIdentificationCodeEntity,
-  ): Promise<VehicleIdentificationCodeEntity> {
+    vehicleIdentificationCodeInstance: VehicleIdentificationCode,
+  ): Promise<VehicleIdentificationCode> {
     vehicleIdentificationCodeInstance.id = "veh_xxxxxxxxxxxx_1";
-    return VehicleIdentificationCodeEntity.create(vehicleIdentificationCodeInstance).save();
+    return VehicleIdentificationCode.create(vehicleIdentificationCodeInstance).save();
   }
 }

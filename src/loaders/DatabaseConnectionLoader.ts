@@ -1,4 +1,5 @@
 import { DataSource } from "typeorm";
+import { Vehicle, VehicleIdentificationCode } from "../api/models/";
 
 export async function DatabaseConnectionLoader() {
   const AppDataSource = new DataSource({
@@ -8,6 +9,10 @@ export async function DatabaseConnectionLoader() {
     username: process.env.TYPEORM_USERNAME,
     password: process.env.TYPEORM_PASSWORD,
     database: process.env.TYPEORM_DATABASE,
+    entities: [Vehicle, VehicleIdentificationCode],
+    migrations: ["src/migration/**/*.ts"],
+    synchronize: true,
+    logging: true,
   });
   AppDataSource.initialize()
     .then(() => {

@@ -1,17 +1,18 @@
-import { Body, Get, JsonController, Post } from "routing-controllers";
+import { Body, Get, JsonController, Post, Param } from "routing-controllers";
 
-import { VehicleEntity } from "../../../models";
+import { Vehicle } from "../../../models";
 
 @JsonController()
 export class VehicleController {
   @Get("/vehicle/:vehicle_id")
-  getOne(): Promise<VehicleEntity[]> {
-    return VehicleEntity.find();
+  getOne(@Param("vehicle_id") vehicle_id: string): Promise<Vehicle> {
+    console.log("vehicle_id: ", vehicle_id);
+    return Vehicle.findOneBy({ id: vehicle_id });
   }
 
-  @Post()
-  create(@Body() body: VehicleEntity): Promise<VehicleEntity> {
+  @Post("/vehicle")
+  async create(@Body() body: Vehicle): Promise<Vehicle> {
     console.log("body: ", body);
-    return VehicleEntity.create(body).save();
+    return Vehicle.create(body).save();
   }
 }

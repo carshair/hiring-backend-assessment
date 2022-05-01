@@ -8,13 +8,35 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity("TableNameForVehicleIdentificationCodeEntity")
-export class VehicleIdentificationCodeEntity extends BaseEntity {
+
+@Entity()
+export class VehicleIdentificationCode extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
     id: string;
 
   @Column()
-    exampleColumn: string;
+    code: string;
+
+  @Column()
+    make: string;
+
+  @Column()
+    make_id: string;
+
+  @Column()
+    manufacturer: string;
+
+  @Column()
+    manufacturer_id: string;
+
+  @Column()
+    model: string;
+
+  @Column()
+    model_id: string;
+
+  @Column()
+    model_year: string;
 
   @CreateDateColumn()
     createdDate: Date;

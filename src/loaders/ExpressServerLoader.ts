@@ -8,6 +8,7 @@ export function ExpressServerLoader(): Application {
     cors: true,
     classTransformer: true,
     defaultErrorHandler: false,
+    routePrefix: "/api/v1",
     middlewares: [],
     controllers: Object.values(Controllers),
   });
