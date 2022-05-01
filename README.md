@@ -22,3 +22,6 @@
 - System should be able to decode the VIN.
 - System should be able to validate the VIN format by calling (Third-Party api) and check whether the VIN has already existed in the database.
 - System should be able to store the decoded VIN information into database.
+
+## UML Diagram
+![Alt text](./uml.png "UML Diagram")
