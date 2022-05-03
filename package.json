@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./dist/index.js ",
-    "dev": "nodemon -r dotenv/config src/index.ts",
+    "dev": "DEBUG=car-shair* nodemon -r dotenv/config src/index.ts",
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
     "migration:create": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:create",
@@ -17,9 +17,12 @@
     "migration:revert": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert"
   },
   "dependencies": {
+    "@types/debug": "^4.1.7",
+    "axios": "^0.27.2",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "cors": "^2.8.5",
+    "debug": "^4.3.4",
     "express": "^4.17.3",
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",

@@ -1,4 +1,5 @@
 import {
+  Index,
   BaseEntity,
   Column,
   CreateDateColumn,
@@ -14,6 +15,7 @@ export class VehicleIdentificationCode extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
     id: string;
 
+  @Index({ unique: true })
   @Column()
     code: string;
 
