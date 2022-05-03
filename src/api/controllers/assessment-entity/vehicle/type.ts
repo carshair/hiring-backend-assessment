@@ -8,11 +8,13 @@ export interface VehicleCreateAPIInput {
   registration_expiry_date: string;
   registration_name: string;
   vehicle_identification_number: string;
+  value: number;
 }
 
 export interface VehicleUpdateAPIInput {
   mileage?: number;
   color?: string;
+  value?: number;
   description?: string;
   license_number?: string;
   registration_number?: string;

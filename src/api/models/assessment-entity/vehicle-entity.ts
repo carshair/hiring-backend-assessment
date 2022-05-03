@@ -9,6 +9,7 @@ import {
   OneToOne,
   JoinColumn,
   Index,
+  Double,
 } from "typeorm";
 import { VehicleIdentificationCode } from "./vehicle-identification-code-entity";
 @Entity()
@@ -16,8 +17,8 @@ export class Vehicle extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
     id: string;
 
-  @Column()
-    mileage: number;
+  @Column({ type: "double" })
+    mileage: Double;
 
   @Column()
     color: string;
@@ -34,6 +35,9 @@ export class Vehicle extends BaseEntity {
 
   @Column()
     registration_state: string;
+
+  @Column({ type: "double" })
+    value: Double;
 
   @Column({ type: "varchar", length: "128" })
     registration_name: string;

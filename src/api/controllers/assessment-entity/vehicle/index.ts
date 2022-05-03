@@ -62,7 +62,6 @@ export class VehicleController {
     );
   }
 
-  @HttpCode(201)
   @Put("/vehicle/:vehicle_id")
   async update(
     @Body() body: VehicleUpdateAPIInput,
@@ -86,6 +85,12 @@ export class VehicleController {
         throw new BadRequestError(` mileage ${body.mileage} cannot be negative.`);
       }
       vehicle.mileage = body.mileage;
+    }
+    if (body.value) {
+      if (body.value < 0) {
+        throw new BadRequestError(` value ${body.value} cannot be negative.`);
+      }
+      vehicle.value = body.value;
     }
     if (!_isEmpty(body.registration_expiry_date)) {
       const expiryDate = new Date(body.registration_expiry_date.trim());
@@ -135,13 +140,11 @@ export class VehicleController {
   @HttpCode(201)
   @Post("/vehicle")
   async create(@Body() body: VehicleCreateAPIInput): Promise<Vehicle> {
-    // user input validation
     const [isValid, message] = this.isValidVehicle(body);
     if (isValid === false) {
       throw new BadRequestError(message);
     }
-    // wrap in transaction
-    // create vehicle- identification-code object
+
     const vinCodeInstance = new VehicleIdentificationCode();
     vinCodeInstance.code = body.vehicle_identification_number;
 
@@ -152,7 +155,6 @@ export class VehicleController {
       throw vinCodeResult as Error;
     }
 
-    // create vehicle object
     const vehicleInstance = this.createVehicleInstance(body, vinCodeResult);
     return Vehicle.create(vehicleInstance).save();
   }
@@ -172,10 +174,18 @@ export class VehicleController {
       return [false, "vin cannot be empty string"];
     }
 
+    if (body.mileage < 0) {
+      return [false, "mileage cannot be negative"];
+    }
+
+    if (body.value < 0) {
+      return [false, "value cannot be negative"];
+    }
+
     return [true, ""];
   }
 
-  createVehicleInstance(body: VehicleCreateAPIInput, codeVal: VehicleIdentificationCode): Vehicle {
+  private createVehicleInstance(body: VehicleCreateAPIInput, codeVal: VehicleIdentificationCode): Vehicle {
     const result = new Vehicle();
     result.color = body.color;
     result.description = body.description;
@@ -186,6 +196,7 @@ export class VehicleController {
     result.registration_expiry_date = new Date(body.registration_expiry_date);
     result.registration_name = body.registration_name;
     result.vehicle_identification_code = codeVal;
+    result.value = body.value;
     return result;
   }
 }

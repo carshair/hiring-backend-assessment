@@ -1,2 +1,2 @@
-curl --location --request GET 'localhost:8889/api/v1/vehicle/120429fe-ea15-4c58-a866-6c9e06751db' \
+curl --location --request GET 'localhost:8889/api/v1/vehicle/e7e88d47-0b11-490a-90e7-02bc524cd5d5' \
 --data-raw ''
