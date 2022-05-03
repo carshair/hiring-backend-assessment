@@ -42,6 +42,7 @@ export class VehicleIdentificationCodeController {
   }
 
   async create(
+    isUpdate: boolean,
     vehicleIdentificationCodeInstance: VehicleIdentificationCode,
   ): Promise<VehicleIdentificationCode | Error> {
     const result = await this.getVINDecodedInfo(vehicleIdentificationCodeInstance.code);
@@ -63,6 +64,9 @@ export class VehicleIdentificationCodeController {
     this.vehicleIdentificationCodeInstanceDataMassage(result.Results?.[0], vehicleIdentificationCodeInstance);
 
     debugLogger("vehicleIdentificationCodeInstance: ", vehicleIdentificationCodeInstance);
+    if (isUpdate) {
+      return vehicleIdentificationCodeInstance;
+    }
 
     return VehicleIdentificationCode.create(vehicleIdentificationCodeInstance).save();
   }
