@@ -8,36 +8,59 @@ import {
   HttpCode,
   NotFoundError,
   Put,
-  // Delete,
+  Delete,
 } from "routing-controllers";
 
 import { VehicleIdentificationCodeController } from "../vehicle-identification-code";
 import { Vehicle, VehicleIdentificationCode } from "../../../models";
-import { VehicleCreateAPIInput, VehicleUpdateAPIInput } from "./type";
+import { VehicleCreateAPIInput, VehicleUpdateAPIInput, VehicleDeleteAPIResponse } from "./type";
 
 import _isEmpty from "lodash/isEmpty";
 import { debug } from "debug";
 
 
 const debugLogger = debug("car-shair:debug:vechile");
-export class ValidationError extends Error {
-  name = "ValidationError";
-  message = "Validation Error!";
-  errors = ["blank", "minLength", "maxLength"];
-}
 
 @JsonController()
 export class VehicleController {
   @Get("/vehicle/:vehicle_id")
-  getOne(@Param("vehicle_id") vehicle_id: string): Promise<Vehicle> {
-    console.log("vehicle_id: ", vehicle_id);
-    return Vehicle.findOneBy({ id: vehicle_id });
+  async getOne(@Param("vehicle_id") vehicle_id: string): Promise<Vehicle> {
+    const vehicle = await Vehicle.createQueryBuilder("vehicle")
+      .where("vehicle.id = :id", { id: vehicle_id })
+      .leftJoinAndSelect("vehicle.vehicle_identification_code", "vehicle_identification_code")
+      .getOne();
+    if (_isEmpty(vehicle)) {
+      throw new BadRequestError(`vehicle_id ${vehicle_id} was not found`);
+    }
+    return vehicle;
   }
 
-  // @HttpCode(201)
-  // @Delete("/vehicle")
-  // async delete(@Body() body: VehicleCreateAPIInput): Promise<Vehicle> {
-  // }
+  @Delete("/vehicle/:vehicle_id")
+  async delete(@Param("vehicle_id") vehicle_id: string): Promise<VehicleDeleteAPIResponse> {
+    const vehicle = await Vehicle.createQueryBuilder("vehicle")
+      .where("vehicle.id = :id", { id: vehicle_id })
+      .leftJoinAndSelect("vehicle.vehicle_identification_code", "vehicle_identification_code")
+      .getOne();
+
+    if (_isEmpty(vehicle)) {
+      throw new NotFoundError(`vehicle:${vehicle_id} was not found.`);
+    }
+
+    const result = await VehicleIdentificationCode.createQueryBuilder("vehicle_identification_code")
+      .delete()
+      .where("vehicle_identification_code.id = :id", { id: vehicle.vehicle_identification_code.id })
+      .execute();
+    if (result.affected === 1) {
+      const respResult: VehicleDeleteAPIResponse = {
+        id: vehicle_id,
+      };
+      return respResult;
+    }
+
+    throw new BadRequestError(
+      `vehicle_identification_code ${vehicle.vehicle_identification_code.id} was not found`,
+    );
+  }
 
   @HttpCode(201)
   @Put("/vehicle/:vehicle_id")
@@ -68,7 +91,7 @@ export class VehicleController {
       const expiryDate = new Date(body.registration_expiry_date.trim());
       if (expiryDate === undefined || expiryDate.toString() === "Invalid Date") {
         throw new BadRequestError(
-          `date:${body.registration_expiry_date} improper date format MM/DD/YYYY`
+          `date:${body.registration_expiry_date} improper date format MM/DD/YYYY`,
         );
       }
       vehicle.registration_expiry_date = expiryDate;

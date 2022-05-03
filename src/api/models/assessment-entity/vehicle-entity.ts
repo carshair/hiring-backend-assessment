@@ -38,7 +38,10 @@ export class Vehicle extends BaseEntity {
   @Column({ type: "varchar", length: "128" })
     registration_name: string;
 
-  @OneToOne(() => VehicleIdentificationCode)
+  @OneToOne(() => VehicleIdentificationCode, {
+    onDelete: "CASCADE"
+  })
+
   @JoinColumn()
     vehicle_identification_code: VehicleIdentificationCode;
 

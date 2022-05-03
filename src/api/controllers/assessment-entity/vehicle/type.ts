@@ -21,3 +21,7 @@ export interface VehicleUpdateAPIInput {
   registration_name?: string;
   vehicle_identification_number?: string;
 }
+
+export interface VehicleDeleteAPIResponse {
+  id: string;
+}
