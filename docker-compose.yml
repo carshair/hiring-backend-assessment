@@ -18,7 +18,17 @@ services:
       MYSQL_PASSWORD: ${TYPEORM_PASSWORD}
     ports:
       - ${TYPEORM_PORT}:${TYPEORM_PORT}
-
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8080:80
 volumes:
   db_data:
     driver: local
