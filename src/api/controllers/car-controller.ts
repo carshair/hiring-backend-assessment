@@ -1,4 +1,4 @@
-import { Body, JsonController, Post } from "routing-controllers";
+import { Body, InternalServerError, JsonController, Post } from "routing-controllers";
 
 import { CarEntity } from "../models";
 import { CarService } from "../services";
@@ -13,6 +13,11 @@ export class CarController {
 
   @Post()
   create(@Body() body: CreateCarDTO): Promise<CarEntity> {
-    return this.carService.create(body);
+    try {
+      return this.carService.create(body);
+    } catch (error) {
+      console.error(error);
+      throw new InternalServerError("Internal server error");
+    }
   }
 }
