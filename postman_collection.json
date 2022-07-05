@@ -1,0 +1,37 @@
+{
+	"info": {
+		"_postman_id": "e5476d3b-934c-4327-88aa-27afa5b9d484",
+		"name": "Car Listing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vin\": \"1GPSH73E88H134350\",\n    \"licensePlate\":\"TS001\",\n    \"registration\": \"123322\",\n    \"registrationState\": \"CA\",\n    \"registrationExpiration\": \"2004-03-03\",\n    \"name\":\"John\",\n    \"carValue\": \"240000\",\n    \"currentMileage\": \"1200\",\n    \"description\": \"My car\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8889/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8889",
+					"path": [
+						"car"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
