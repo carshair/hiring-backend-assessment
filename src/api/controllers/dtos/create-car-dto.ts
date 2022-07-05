@@ -1,11 +1,16 @@
-export interface CreateCarDTO {
+import { IsDateString, IsOptional, Length } from "class-validator";
+export class CreateCarDTO {
   licensePlate: string;
   registration: number;
   registrationState: string;
-  registrationExpiration: Date;
-  name: string;
-  vin: string;
+  @IsDateString()
+    registrationExpiration: Date;
+  @IsOptional()
+    name: string;
+  @Length(17,17)
+    vin: string;
   carValue: number;
   currentMileage: number;
-  description: string;
+  @IsOptional()
+    description: string;
 }
