@@ -1,5 +1,24 @@
 # Backend Assessment
 
+## How to run
+### Application
+Create docker containers for mysql instance and phpMyAdmin
+
+```
+docker-compose up
+```
+Run the app
+
+```
+yarn dev
+```
+
+### Tests
+
+```
+yarn test
+```
+
 ## Description
 
 ### Background
