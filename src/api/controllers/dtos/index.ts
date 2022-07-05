@@ -1,1 +1,1 @@
-export { CreateCarDTO } from "./create-car-dto";
+export { CarDTO } from "./car-dto";

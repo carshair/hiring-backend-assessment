@@ -1,5 +1,5 @@
 import { IsDateString, IsOptional, Length } from "class-validator";
-export class CreateCarDTO {
+export class CarDTO {
   licensePlate: string;
   registration: number;
   registrationState: string;
