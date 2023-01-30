@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Get, JsonController, UseInterceptor } from "routing-controllers";
+import { Get, JsonController, Param, UseInterceptor } from "routing-controllers";
 
 import { Car } from "../models";
 import { CarInterceptor } from "../interceptors";
@@ -10,5 +10,10 @@ export class CarController {
   @Get()
   async get() {
     return getRepository(Car).find();
+  }
+
+  @Get("/:id")
+  async getById(@Param("id") id: string) {
+    return await getRepository(Car).findOne(id);
   }
 }
