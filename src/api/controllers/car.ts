@@ -1,11 +1,10 @@
 import { getRepository } from "typeorm";
-import {Body, Get, JsonController, Param,Post, UseInterceptor } from "routing-controllers";
+import { Body, Get, JsonController, Param, Post, Put, UseInterceptor } from "routing-controllers";
 
 import { Car } from "../models";
 import { CarDTO } from "./../interfaces";
 import { CarInterceptor } from "../interceptors";
 import { VinDecoder } from "./utils/vinDecoder";
-
 
 @JsonController("/car")
 @UseInterceptor(CarInterceptor)
@@ -30,5 +29,13 @@ export class CarController {
       year: ModelYear || null,
       ...body,
     });
+  }
+
+  @Put("/:id")
+  async update(@Param("id") id: string, @Body() body: CarDTO) {
+    const car = await getRepository(Car).findOne(id);
+    if (!car) return;
+    Object.assign(car, body);
+    return getRepository(Car).save(car);
   }
 }
