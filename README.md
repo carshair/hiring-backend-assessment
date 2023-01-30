@@ -25,6 +25,12 @@
 - CRUD operations should be implemented here
 - Vin decoder api should handle in a separate function, so that it could be use with other vehicles too.
 
+### Test Cases
+
+- Used jest to write test cases
+- Test cases should test get, get by id, post, update, delete
+- created mock data to test
+
 ### Resources
 
   - MySQL
@@ -34,6 +40,7 @@
   - Express
   - routing-controllers
   - class-validator
+  - Jest with Typescript
 
 ## Goal and requirements
 
@@ -45,6 +52,7 @@
   - delete a car
   - decode the VIN.
   - decoded VIN information into database.
+  - test all CRUD operations
 
 # Feedback
 
@@ -81,4 +89,11 @@ To bring up the environment, perform the following steps:
     # In a separate terminal session
     yarn dev
     # Exposes express app on port 8889
+    ```
+
+3. Bring up test mode
+
+  ```bash
+    # In a separate terminal session
+    yarn test
     ```
