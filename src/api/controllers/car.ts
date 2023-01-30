@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Body, Get, JsonController, Param, Post, Put, UseInterceptor } from "routing-controllers";
+import { Body, Delete, Get, JsonController, Param, Post, Put, UseInterceptor } from "routing-controllers";
 
 import { Car } from "../models";
 import { CarDTO } from "./../interfaces";
@@ -37,5 +37,12 @@ export class CarController {
     if (!car) return;
     Object.assign(car, body);
     return getRepository(Car).save(car);
+  }
+
+  @Delete("/:id")
+  async delete(@Param("id") id: string) {
+    const car = await getRepository(Car).findOne(id);
+    if (!car) return;
+    return await getRepository(Car).remove(car);
   }
 }
